@@ -78,6 +78,16 @@ do_configure[noexec] = "1"
 DEPENDS_append = " dtc-native openssl-native"
 DEPENDS_append_aarch64_qemuall ?= " optee-os"
 
+def remove_options_tail (in_stirng):
+    from itertools import takewhile
+    return ' '.join(takewhile(lambda x: not x.startswith('-'),in_stirng.split(' ')))
+
+BARE_LD = "${@remove_options_tail(d.getVar('LD'))}"
+EXTRA_OEMAKE += "LD=${BARE_LD}"
+
+BARE_CC = "${@remove_options_tail(d.getVar('CC'))}"
+EXTRA_OEMAKE += "CC=${BARE_CC}"
+
 EXTRA_OEMAKE += "V=1"
 
 # Add platform parameter
