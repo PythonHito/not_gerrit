@@ -19,6 +19,10 @@ LIC_FILES_CHKSUM += "file://docs/license.rst;md5=189505435dbcdcc8caa63c46fe93fa8
 
 SRC_URI_MBEDTLS = "git://github.com/ARMmbed/mbedtls.git;name=mbedtls;protocol=https;destsuffix=git/mbedtls;branch=mbedtls-2.16"
 
+SRC_URI_append = " \
+    file://0002-make-link-compiler-rt-builtins-when-32-bit-2-2.patch \
+    "
+
 # mbed TLS v2.16.2
 SRCREV_mbedtls = "d81c11b8ab61fd5b2da8133aa73c5fe33a0633eb"
 

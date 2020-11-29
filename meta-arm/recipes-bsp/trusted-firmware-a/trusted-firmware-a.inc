@@ -81,6 +81,7 @@ do_configure[noexec] = "1"
 # We need openssl for fiptool
 DEPENDS_append = " dtc-native openssl-native"
 DEPENDS_append_aarch64_qemuall ?= " optee-os"
+DEPENDS_append_toolchain-clang = " compiler-rt"
 
 # CC and LD introduce arguments which conflict with those otherwise provided by
 # this recipe. The heads of these variables excluding those arguments
@@ -117,6 +118,10 @@ EXTRA_OEMAKE += "${@bb.utils.contains('TFA_UBOOT', '1', 'BL33=${DEPLOY_DIR_IMAGE
 
 # Tell the tools where the native OpenSSL is located
 EXTRA_OEMAKE += "OPENSSL_DIR=${STAGING_DIR_NATIVE}/${prefix_native}"
+
+# Runtime variables
+EXTRA_OEMAKE += "RUNTIME_SYSROOT=${STAGING_DIR_HOST}"
+EXTRA_OEMAKE += "TARGET_FPU=${TARGET_FPU}"
 
 EXTRA_OEMAKE_append_aarch64_qemuall = " \
     BL32=${STAGING_DIR_TARGET}${nonarch_base_libdir}/firmware/tee-header_v2.bin \

@@ -1,4 +1,4 @@
-# Armv7-A FVP specific TFA parameters
+# Armv8-A 32-bit FVP specific TFA parameters
 
 COMPATIBLE_MACHINE = "fvp-base-arm32"
 TFA_PLATFORM = "fvp"
